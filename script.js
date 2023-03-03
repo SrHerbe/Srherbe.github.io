@@ -76,15 +76,31 @@ csvFileInput.addEventListener("change", (e) => {
             ArrFinal[i] = ArrFinal[i].join(";");
         });
         csvData = ArrFinal.join("\n");
+
+        let str = "ÁÉÍÓÚáéíóú";
+        str = str.replace(/[áéíóúÁÉÍÓÚ]/g, function(match) {
+            switch (match) {
+                case 'á': return 'a';
+                case 'é': return 'e';
+                case 'í': return 'i';
+                case 'ó': return 'o';
+                case 'ú': return 'u';
+                case 'Á': return 'A';
+                case 'É': return 'E';
+                case 'Í': return 'I';
+                case 'Ó': return 'O';
+                case 'Ú': return 'U';
+            }
+        });
     };
 
-    reader.readAsText(file, 'utf-8');
+    reader.readAsText(file, 'Windows-1252');
 });
 
 
 
 downloadBtn.addEventListener("click", () => {
-    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8" });
+    const blob = new Blob([csvData], { type: "text/csv;charset=windows-1252" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
