@@ -78,13 +78,13 @@ csvFileInput.addEventListener("change", (e) => {
         csvData = ArrFinal.join("\n");
     };
 
-    reader.readAsText(file, 'Windows-1252');
+    reader.readAsText(file, 'utf-8');
 });
 
 
 
 downloadBtn.addEventListener("click", () => {
-    const blob = new Blob([csvData], { type: "text/csv;charset=windows-1252" });
+    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
