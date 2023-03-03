@@ -1,0 +1,85 @@
+* {
+    font-family: system-ui;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+.contenedor_principal {
+    display: flex;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 5rem 2rem 5rem;
+    background-color: #003972;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 2px black;
+    margin-top: 3rem;
+}
+
+#uploadBtn {
+    cursor: pointer;
+}
+
+#fileInput {
+    display: none;
+}
+
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+
+.button, #uploadBtn {
+    transition: 0.5s;
+}
+
+.button:hover, #uploadBtn:hover {
+    transform: scale(1.2);
+}
+
+#tabla {
+    margin-top: 4rem;
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+
+.default {
+    border: 1px solid black !important;
+}
+
+.terminado {
+    background-color: hsl(0, 100%, 80%);
+    border: 1px solid black !important;
+}
+.activo {
+    background-color: hsl(110, 100%, 80%);
+    border: 1px solid black !important;
+}
+.pendiente {
+    background-color: hsl(32, 100%, 80%);
+    border: 1px solid black !important;
+}
+.white {
+    border-color: white !important;
+}
