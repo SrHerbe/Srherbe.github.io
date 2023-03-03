@@ -1,6 +1,8 @@
 const csvFileInput = document.getElementById("fileInput");
 const downloadBtn = document.getElementById("downloadBtn");
 let csvData;
+let dataArr;
+const visualizarBtn = document.getElementById("visualizarBtn");
 
 csvFileInput.addEventListener("change", (e) => {
     const file = csvFileInput.files[0];
@@ -70,6 +72,8 @@ csvFileInput.addEventListener("change", (e) => {
             ArrFinal.pop();
         }
 
+        dataArr = ArrFinal;
+
         //Conversión a string
 
         ArrFinal.forEach((v, i) => {
@@ -77,26 +81,34 @@ csvFileInput.addEventListener("change", (e) => {
         });
         csvData = ArrFinal.join("\n");
 
-        csvData = csvData.replace(/[áéíóúÁÉÍÓÚ]/g, function(match) {
+        csvData = csvData.replace(/[áéíóúÁÉÍÓÚ]/g, function (match) {
             switch (match) {
-                case 'á': return 'a';
-                case 'é': return 'e';
-                case 'í': return 'i';
-                case 'ó': return 'o';
-                case 'ú': return 'u';
-                case 'Á': return 'A';
-                case 'É': return 'E';
-                case 'Í': return 'I';
-                case 'Ó': return 'O';
-                case 'Ú': return 'U';
+                case "á":
+                    return "a";
+                case "é":
+                    return "e";
+                case "í":
+                    return "i";
+                case "ó":
+                    return "o";
+                case "ú":
+                    return "u";
+                case "Á":
+                    return "A";
+                case "É":
+                    return "E";
+                case "Í":
+                    return "I";
+                case "Ó":
+                    return "O";
+                case "Ú":
+                    return "U";
             }
         });
     };
 
-    reader.readAsText(file, 'Windows-1252');
+    reader.readAsText(file, "Windows-1252");
 });
-
-
 
 downloadBtn.addEventListener("click", () => {
     const blob = new Blob([csvData], { type: "text/csv;charset=windows-1252" });
@@ -105,4 +117,56 @@ downloadBtn.addEventListener("click", () => {
     link.href = url;
     link.download = "resultados.csv";
     link.click();
+});
+
+visualizarBtn.addEventListener("click", () => {
+    const filas = csvData.split("\n");
+    const columnas = filas[0].split(";");
+    const tabla = document.getElementById("tabla");
+
+    document.getElementById("tabla").innerHTML = "";
+
+    // Agregar filas de datos
+    for (let i = 0; i < filas.length; i++) {
+        const datos = filas[i].split(";");
+        const fila = document.createElement("tr");
+        for (let j = 0; j < columnas.length; j++) {
+            if (j != 0) {
+                const td = document.createElement("td");
+                if (datos[j] == undefined) {
+                    td.classList.add("white");
+                } else {
+                    td.classList.add("default");
+                }
+                td.textContent = datos[j - 1];
+                if (datos[j] === "T") {
+                    td.classList.add("terminado");
+                    td.classList.remove("default");
+                }
+                if (datos[j] === "A") {
+                    td.classList.add("activo");
+                    td.classList.remove("default");
+                }
+                if (datos[j] === "P") {
+                    td.classList.add("pendiente");
+                    td.classList.remove("default");
+                }
+                if (
+                    td.textContent === "P" ||
+                    td.textContent === "T" ||
+                    td.textContent === "A"
+                ) {
+                    continue;
+                }
+                fila.appendChild(td);
+            }
+        }
+        tabla.appendChild(fila);
+    }
+
+    // Mostrar la tabla en la página
+    document.body.appendChild(tabla);
+
+    csvData = "";
+    dataArr = [];
 });
