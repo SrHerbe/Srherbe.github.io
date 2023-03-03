@@ -77,7 +77,7 @@ csvFileInput.addEventListener("change", (e) => {
         });
         csvData = ArrFinal.join("\n");
 
-        ArrFinal = ArrFinal.replace(/[áéíóúÁÉÍÓÚ]/g, function(match) {
+        csvData = csvData.replace(/[áéíóúÁÉÍÓÚ]/g, function(match) {
             switch (match) {
                 case 'á': return 'a';
                 case 'é': return 'e';
