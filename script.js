@@ -124,7 +124,7 @@ visualizarBtn.addEventListener("click", () => {
     const columnas = filas[0].split(";");
     const tabla = document.getElementById("tabla");
 
-    document.getElementById("tabla").innerHTML = "";
+    // document.getElementById("tabla").innerHTML = "";
 
     // Agregar filas de datos
     for (let i = 0; i < filas.length; i++) {
@@ -167,6 +167,6 @@ visualizarBtn.addEventListener("click", () => {
     // Mostrar la tabla en la página
     document.body.appendChild(tabla);
 
-    csvData = "";
-    dataArr = [];
+    // csvData = "";
+    // dataArr = [];
 });
