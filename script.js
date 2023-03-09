@@ -49,15 +49,14 @@ csvFileInput.addEventListener("change", (e) => {
 
         ArrFinal.forEach((v, i) => {
             let cont = 0;
-            filtro1.forEach((v2) => {
+            filtro1.forEach((v2, j) => {
                 if (v[0] == v2[0]) {
                     ArrFinal[i].push(v2[4]);
-                    let estado;
-                    if (
-                        v2[9] == 1 &&
-                        v2[15] == 1 &&
-                        parseFloat(v2[12]) >= 0.7 * parseFloat(v2[5])
-                    ) {
+                    if (v2[9] == 1 && v2[15] == 1){
+                        ArrFinal[i].push("T");
+                    } else if (parseFloat(v2[12]) >= 0.7 * parseFloat(v2[5])) {
+                        ArrFinal[i].push("T");      
+                    } else if (v2[6].includes("CTEC")) { 
                         ArrFinal[i].push("T");
                     } else if (cont == 0) {
                         ArrFinal[i].push("A");
@@ -153,6 +152,10 @@ visualizarBtn.addEventListener("click", () => {
                 if (datos[j] === "A") {
                     td.classList.add("activo");
                     td.classList.remove("default");
+                    if (datos[j-1] == "") {
+                        td.classList.add("white");
+                        td.classList.remove("pendiente");
+                    }
                 }
                 if (datos[j] === "P") {
                     td.classList.add("pendiente");
@@ -162,6 +165,7 @@ visualizarBtn.addEventListener("click", () => {
                         td.classList.remove("pendiente");
                     }
                 }
+                
                 if (
                     td.textContent === "P" ||
                     td.textContent === "T" ||
