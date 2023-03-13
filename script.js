@@ -1,3 +1,11 @@
+/*
+A mayores se solicitan 3 visualizaciones
+- 1. Visualización de todas las ordenes
+- 2. Visualización de todas las ordenes excepto las terminadas
+- 3. ¿?
+
+*/
+
 const csvFileInput = document.getElementById("fileInput");
 const downloadBtn = document.getElementById("downloadBtn");
 let csvData;
@@ -52,11 +60,11 @@ csvFileInput.addEventListener("change", (e) => {
             filtro1.forEach((v2, j) => {
                 if (v[0] == v2[0]) {
                     ArrFinal[i].push(v2[4]);
-                    if (v2[9] == 1 && v2[15] == 1){
+                    if (v2[9] == 1 && v2[15] == 1) {
                         ArrFinal[i].push("T");
                     } else if (parseFloat(v2[12]) >= 0.7 * parseFloat(v2[5])) {
-                        ArrFinal[i].push("T");      
-                    } else if (v2[6].includes("CTEC")) { 
+                        ArrFinal[i].push("T");
+                    } else if (v2[6].includes("CTEC")) {
                         ArrFinal[i].push("T");
                     } else if (cont == 0) {
                         ArrFinal[i].push("A");
@@ -126,8 +134,10 @@ visualizarBtn.addEventListener("click", () => {
     const contenedor = document.getElementById("contenedor_tabla");
     let maxCol = 0;
 
-    dataArr.forEach(v => {
-        if (maxCol < v.split(";").length) { maxCol = v.split(";").length; }
+    dataArr.forEach((v) => {
+        if (maxCol < v.split(";").length) {
+            maxCol = v.split(";").length;
+        }
     });
 
     // document.getElementById("tabla").innerHTML = "";
@@ -152,7 +162,7 @@ visualizarBtn.addEventListener("click", () => {
                 if (datos[j] === "A") {
                     td.classList.add("activo");
                     td.classList.remove("default");
-                    if (datos[j-1] == "") {
+                    if (datos[j - 1] == "") {
                         td.classList.add("white");
                         td.classList.remove("pendiente");
                     }
@@ -160,12 +170,12 @@ visualizarBtn.addEventListener("click", () => {
                 if (datos[j] === "P") {
                     td.classList.add("pendiente");
                     td.classList.remove("default");
-                    if (datos[j-1] == "") {
+                    if (datos[j - 1] == "") {
                         td.classList.add("white");
                         td.classList.remove("pendiente");
                     }
                 }
-                
+
                 if (
                     td.textContent === "P" ||
                     td.textContent === "T" ||
@@ -185,3 +195,13 @@ visualizarBtn.addEventListener("click", () => {
     // csvData = "";
     // dataArr = [];
 });
+
+function copyTable() {
+    var table = document.getElementById("tabla");
+    var range = document.createRange();
+    range.selectNode(table);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    alert("Tabla copiada al portapapeles");
+}
