@@ -162,6 +162,8 @@ visualizarBtn.addEventListener("click", () => {
     const tabla = document.getElementById("tabla");
     const contenedor = document.getElementById("contenedor_tabla");
     let maxCol = 0;
+    document.getElementById("section_tabla").style.display = "block";
+    document.getElementById("contenedor_principal").style.marginTop = "0";
 
     dataArr.forEach((v) => {
         if (maxCol < v.split(";").length) {
@@ -238,5 +240,3 @@ function copyTable() {
     window.getSelection().addRange(range);
     document.execCommand("copy");
 }
-
-function test() {}
