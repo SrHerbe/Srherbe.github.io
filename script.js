@@ -11,6 +11,7 @@ const downloadBtn = document.getElementById("downloadBtn");
 let csvData;
 let dataArr;
 let arrTemp;
+let proceso;
 const visualizarBtn = document.getElementById("visualizarBtn");
 
 csvFileInput.addEventListener("change", (e) => {
@@ -49,6 +50,34 @@ csvFileInput.addEventListener("change", (e) => {
                 return [value];
             }
         });
+
+        //-------------------------------------------------------------------------------
+        console.log(filtro1);
+
+        const resultObject = {};
+
+        for (let i = 0; i < filtro1.length; i++) {
+            const item = filtro1[i];
+            const key = item[0];
+            const value1 = parseInt(item[5].replace(",", "."), 10) || 0;
+            const value2 = parseInt(item[12].replace(",", "."), 10) || 0;
+            if (resultObject[key]) {
+                resultObject[key][0] += value1;
+                resultObject[key][1] += value2;
+            } else {
+                resultObject[key] = [value1, value2];
+            }
+        }
+
+        const resultArray = [];
+
+        for (let key in resultObject) {
+            resultArray.push([key, resultObject[key][0], resultObject[key][1]]);
+        }
+
+        proceso = resultArray;
+
+        //-------------------------------------------------------------------------------
 
         //3. Añadimos
         // T= TERMINADA
@@ -184,6 +213,11 @@ visualizarBtn.addEventListener("click", () => {
                     continue;
                 }
                 fila.appendChild(td);
+            } else {
+                const tdd = document.createElement("td");
+                tdd.textContent = (proceso[i][2]/proceso[i][1]*100).toFixed(0) + "%";
+                tdd.classList.add("default");
+                fila.appendChild(tdd);
             }
         }
         tabla.appendChild(fila);
@@ -203,5 +237,6 @@ function copyTable() {
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
     document.execCommand("copy");
-    alert("Tabla copiada al portapapeles");
 }
+
+function test() {}
