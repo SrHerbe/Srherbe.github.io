@@ -20,7 +20,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem 5rem 2rem 5rem;
+    padding: 1rem 4rem 1rem 4rem;
     background-color: #003972;
     border-radius: 15px;
     box-shadow: 0 0 10px 2px black;
@@ -58,7 +58,7 @@ h1 {
 }
 
 #tabla {
-    margin-top: 4rem;
+    margin-top: 2rem;
     border-collapse: collapse;
     font-size: 10px;
 }
@@ -86,9 +86,8 @@ h1 {
 
 #contenedor_tabla {
     width: 100%;
-    border: 1px solid red;
-    margin-top: 1rem;
     overflow: scroll;
+    height: 69vh;
 }
 
 .estado2 {
@@ -109,5 +108,15 @@ h1 {
     display: flex;
     width: 100%;
     justify-content: flex-end;
-    margin-top: 1rem;
+}
+
+.tabla_cabecera {
+    font-weight: bold;
+    background-color: rgb(161, 161, 161);
+    text-align: center;
+    border: 1px solid black;
+}
+
+#section_tabla {
+    display: none;
 }
