@@ -179,6 +179,14 @@ visualizarBtn.addEventListener("click", () => {
         const fila = document.createElement("tr");
         for (let j = 0; j < maxCol; j++) {
             if (j != 0) {
+
+                if (j==4) {
+                    const tdd = document.createElement("td");
+                    tdd.textContent = (proceso[i][2]/proceso[i][1]*100).toFixed(0) + "%";
+                    tdd.classList.add("default");
+                    fila.appendChild(tdd);
+                }
+
                 const td = document.createElement("td");
                 if (datos[j] == undefined) {
                     td.classList.add("white");
@@ -215,12 +223,7 @@ visualizarBtn.addEventListener("click", () => {
                     continue;
                 }
                 fila.appendChild(td);
-            } else {
-                const tdd = document.createElement("td");
-                tdd.textContent = (proceso[i][2]/proceso[i][1]*100).toFixed(0) + "%";
-                tdd.classList.add("default");
-                fila.appendChild(tdd);
-            }
+            } 
         }
         tabla.appendChild(fila);
     }
