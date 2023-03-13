@@ -85,7 +85,6 @@ h1 {
 }
 
 #contenedor_tabla {
-    width: 100%;
     overflow: scroll;
     height: 69vh;
 }
@@ -119,4 +118,5 @@ h1 {
 
 #section_tabla {
     display: none;
+    width: 100%;
 }
