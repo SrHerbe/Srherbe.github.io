@@ -69,11 +69,11 @@ h1 {
 }
 
 .terminado {
-    background-color: hsl(0, 100%, 80%);
+    background-color: hsl(110, 100%, 80%);
     border: 1px solid black !important;
 }
 .activo {
-    background-color: hsl(110, 100%, 80%);
+    background-color: hsl(36, 100%, 80%);
     border: 1px solid black !important;
 }
 .pendiente {
