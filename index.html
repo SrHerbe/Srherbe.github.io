@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="estilos.css" />
     </head>
     <body>
-        <section class="contenedor_principal">
+        <section class="contenedor_principal" id="contenedor_principal">
             <h1>Control Seguimiento Ordenes de Fabricación</h1>
             <div class="buttons">
                 <label for="fileInput" id="uploadBtn">
@@ -44,19 +44,22 @@
             </div>
         </section>
 
-        <div class="contenedor_btn_copy">
-            <button onclick="copyTable()">Copiar tabla</button>
-        </div>
+        <section id="section_tabla">
+            <div class="contenedor_btn_copy">
+                <button onclick="copyTable()">Copiar tabla</button>
+            </div>
 
-        <div id="contenedor_tabla">
-            <table id="tabla">
-                <tr>
-                    <td>Orden</td>
-                    <td>Material</td>
-                    <td>Texto breve material</td>
-                </tr>
-            </table>
-        </div>
+            <div id="contenedor_tabla">
+                <table id="tabla">
+                    <tr>
+                        <td class="tabla_cabecera">Orden</td>
+                        <td class="tabla_cabecera">Material</td>
+                        <td class="tabla_cabecera">Texto breve material</td>
+                        <td class="tabla_cabecera">SEGUIMIENTO ORDENES</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
 
         <script src="script.js"></script>
     </body>
